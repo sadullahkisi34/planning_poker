@@ -45,18 +45,25 @@ io.on('connection', (socket) => {
   socket.on('vote', (vote) => {
     const roomId = socket.roomId;
     if (!rooms[roomId]) return;
+<<<<<<< HEAD
   
     rooms[roomId].users[socket.id].vote = vote;
   
     // Vote sırasında revealed = false!
+=======
+    rooms[roomId].users[socket.id].vote = vote;
+>>>>>>> 4e5e2803cf12cb920b0c63f134161e1c8e43f4b5
     io.to(roomId).emit('updateVotes', getVotes(roomId, false));
   });
 
   socket.on('reveal', () => {
     const roomId = socket.roomId;
+<<<<<<< HEAD
     if (!rooms[roomId]) return;
   
     rooms[roomId].revealed = true;
+=======
+>>>>>>> 4e5e2803cf12cb920b0c63f134161e1c8e43f4b5
     io.to(roomId).emit('updateVotes', getVotes(roomId, true));
   });
 
@@ -80,10 +87,14 @@ io.on('connection', (socket) => {
 function getVotes(roomId, revealed) {
   if (!rooms[roomId]) return [];
   return Object.values(rooms[roomId].users)
+<<<<<<< HEAD
     // 1️⃣ PO asla gelmesin!
     .filter(u => u.role !== 'PO')
     // 2️⃣ revealed TRUE ise vote atanlar gelsin
     .filter(u => revealed ? u.vote !== null : true)
+=======
+    .filter(u => u.vote !== null || revealed)
+>>>>>>> 4e5e2803cf12cb920b0c63f134161e1c8e43f4b5
     .map(u => ({
       name: u.name,
       role: u.role,
