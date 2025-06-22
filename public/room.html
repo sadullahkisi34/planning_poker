@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Planlama Poker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .card-btn.selected {
+      border: 2px solid #0d6efd;
+      box-shadow: 0 0 5px #0d6efd;
+    }
+  </style>
+</head>
+<body class="p-4 bg-light">
+  <div class="container">
+    <h1 class="mb-4">Planlama Poker</h1>
+
+    <div id="joinArea" class="row gy-2 mb-4">
+      <div class="col-md-5">
+        <input id="nameInput" class="form-control" placeholder="Adınızı girin">
+      </div>
+      <div class="col-md-4">
+        <select id="roleInput" class="form-select">
+          <option>PO</option>
+          <option>BE</option>
+          <option>FE</option>
+          <option>QA</option>
+          
+        </select>
+      </div>
+      <div class="col-md-3">
+        <button id="joinBtn" class="btn btn-primary w-100">Katıl</button>
+      </div>
+    </div>
+
+    <div id="cards" class="row g-2 mb-4" style="display:none;">
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">0</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">0.5</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">1</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">2</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">3</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">5</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">8</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">13</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">21</button>
+      </div>
+      <div class="col-4 col-md-2">
+        <button class="btn btn-outline-primary w-100 card-btn">?</button>
+      </div>
+    </div>
+
+    <div id="controls" class="mb-4" style="display:none;">
+      <button id="reveal" class="btn btn-success me-2">Kartları Aç</button>
+      <button id="reset" class="btn btn-secondary">Yeni Tur</button>
+    </div>
+
+    <h2 id="playersTitle" class="mb-3" style="display:none;">Odaya Katılanlar</h2>
+    <ul id="players" class="list-group mb-4" style="display:none;"></ul>
+
+    <h2 id="votesTitle" class="mb-3" style="display:none;">Seçimler</h2>
+    <div id="votes" style="display:none;"></div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/room.js"></script>
+</body>
+</html>
