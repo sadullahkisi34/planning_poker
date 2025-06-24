@@ -1,7 +1,12 @@
-const express = require('express');
-const http = require('http');
-const { Server } = require('socket.io');
-const { nanoid } = require('nanoid');
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import { nanoid } from "nanoid";
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 const server = http.createServer(app);
@@ -10,7 +15,7 @@ const io = new Server(server);
 app.use(express.static('public'));
 app.use(express.json());
 
-const rooms = {}; // { roomId: { ownerId, users: {} } }
+const rooms = {};
 
 app.post('/create-room', (req, res) => {
   const id = nanoid(6);
@@ -19,7 +24,7 @@ app.post('/create-room', (req, res) => {
 });
 
 app.get('/room/:id', (req, res) => {
-  res.sendFile(__dirname + '/public/room.html');
+  res.sendFile(join(__dirname, 'public', 'room.html'));
 });
 
 io.on('connection', (socket) => {
