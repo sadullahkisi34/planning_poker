@@ -93,11 +93,7 @@ socket.on('updateVotes', (votes) => {
 
   // ✅ 2) Gruplama
   const grouped = {};
-<<<<<<< HEAD
-  votes.forEach(v => {
-=======
   filteredVotes.forEach(v => {
->>>>>>> 4e5e2803cf12cb920b0c63f134161e1c8e43f4b5
     if (!grouped[v.role]) grouped[v.role] = [];
     grouped[v.role].push(v);
   });
