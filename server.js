@@ -1,14 +1,7 @@
-// ✅ Railway, Render, Vercel gibi Node.js hosting için ESM uyumlu hali
-
-import express from 'express';
-import http from 'http';
-import { Server } from 'socket.io';
-import { nanoid } from 'nanoid';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
-
-// ESM modül ortamı için __dirname tanımı:
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+const { nanoid } = require('nanoid');
 
 const app = express();
 const server = http.createServer(app);
@@ -26,7 +19,7 @@ app.post('/create-room', (req, res) => {
 });
 
 app.get('/room/:id', (req, res) => {
-  res.sendFile(join(__dirname, 'public', 'room.html'));
+  res.sendFile(__dirname + '/public/room.html');
 });
 
 io.on('connection', (socket) => {
